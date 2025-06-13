@@ -66,7 +66,6 @@ public class Commands implements CommandExecutor {
             }
 
             Luckyblock luckyblock = (Luckyblock)Luckyblock.getLuckyBlocks().get(args[1]);
-            System.out.println(Luckyblock.getLuckyBlocks());
             if (luckyblock == null) {
                return this.noLuckyBlockMsg(sender);
             }
