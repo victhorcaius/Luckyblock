@@ -3,6 +3,7 @@ package xyz.geik.luckyblock.model;
 import dev.dbassett.skullcreator.SkullCreator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,7 +23,7 @@ public class Luckyblock {
    private static Material material = Material.getMaterial(Main.getConfigFile().getString("blockColor") + "_STAINED_GLASS");
    private static HashMap<String, Luckyblock> luckyblocks = new HashMap();
    private String dataName;
-   private String uuid;
+   private UUID uuid;
    private int health = 0;
    private Location location;
    private Animation animation;
@@ -43,7 +44,7 @@ public class Luckyblock {
       return luckyblocks;
    }
 
-   public Luckyblock(String dataName, String uuid, Location location) {
+   public Luckyblock(String dataName, UUID uuid, Location location) {
       this.dataName = dataName;
       this.uuid = uuid;
       this.animation = new Animation(((ConfigData)ConfigData.getConfigData().get(dataName)).isAnimation());
@@ -109,7 +110,7 @@ public class Luckyblock {
       Main.getLuckyDataFile().singleLayerKeySet().forEach((uuid) -> {
          Location location = SerializerAPI.getLocSterilizer().getLocation(Main.getLuckyDataFile().getString(uuid + ".location"), "/");
          String dataName = Main.getLuckyDataFile().getString(uuid + ".name");
-         new Luckyblock(dataName, uuid, location);
+         new Luckyblock(dataName, UUID.fromString(uuid), location);
          location.getBlock().setType(Material.BEDROCK);
       });
    }
@@ -120,7 +121,7 @@ public class Luckyblock {
       if (!Main.getLuckyDataFile().contains("lucky-blocks." + key)) {
          return null;
       } else {
-         Luckyblock block = new Luckyblock(key, uuid, loc);
+         Luckyblock block = new Luckyblock(key, UUID.fromString(uuid), loc);
          block.setHealth(Main.getLuckyDataFile().getInt(uuid + ".health"));
          return block;
       }
@@ -130,7 +131,7 @@ public class Luckyblock {
       return this.dataName;
    }
 
-   public String getUuid() {
+   public UUID getUuid() {
       return this.uuid;
    }
 
@@ -150,7 +151,7 @@ public class Luckyblock {
       this.dataName = dataName;
    }
 
-   public void setUuid(String uuid) {
+   public void setUuid(UUID uuid) {
       this.uuid = uuid;
    }
 
