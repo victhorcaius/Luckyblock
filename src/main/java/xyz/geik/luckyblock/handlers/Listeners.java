@@ -3,6 +3,7 @@ package xyz.geik.luckyblock.handlers;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -34,7 +35,7 @@ public class Listeners implements Listener {
             if (event.getItemInHand() != null && event.getItemInHand().getItemMeta() != null && event.getItemInHand().getItemMeta().getDisplayName() != null) {
                String luckyKey = ConfigData.isDisplayNameExist(event.getItemInHand().getItemMeta().getDisplayName());
                if (luckyKey != null) {
-                  Luckyblock luckyBlock = new Luckyblock(luckyKey, luckyKey, event.getBlock().getLocation());
+                  Luckyblock luckyBlock = new Luckyblock(luckyKey, UUID.randomUUID(), event.getBlock().getLocation());
                   luckyBlock.save();
                   luckyBlock.spawn();
                }
