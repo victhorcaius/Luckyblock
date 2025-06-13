@@ -1,0 +1,10 @@
+name: Luckyblock
+main: xyz.geik.luckyblock.Main
+version: 1.0
+author: Geik
+api-version: 1.13
+softdepend: [PlaceholderAPI]
+commands:
+  luckyblock:
+    description: luckyblock main command
+    aliases: [lb, lblock, luckyb, lucky, luckyblocks]
