@@ -130,7 +130,7 @@ public class Luckyblock {
       return this.dataName;
    }
 
-   public UUID getUuid() {
+   public String getUuid() {
       return this.uuid;
    }
 
